@@ -1,0 +1,50 @@
+﻿@model AKQA.DemoApp.Models.ConvertAmountToWordsViewModel
+<div class="row">
+    <h2>Input</h2>
+    <br />
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+        <label for="pwd">Amount:</label>
+        <input type="number" class="form-control" id="amount">
+    </div>
+    <div>
+        <button type="button" class="btn btn-default" id="submit">Submit</button>
+    </div>
+
+    <h2>Output</h2>
+    <br />
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <span id="nameText"></span>
+    </div>
+    <div class="form-group">
+        <label for="pwd">Amount:</label>
+        <span id="amountText"></span>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#submit").click(function () {
+
+            $("#nameText").html($("#name").val());
+
+            $.ajax({
+                url: "@Model.DemoAppServiceBaseUrl/Amount/ConvertToWords/" + $("#amount").val(),
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $("#amountText").html(data.result);
+                },
+                error: function (error) {
+                    var response = $.parseJSON(error.responseText);
+                    
+                    $("#amountText").html(response.error.message);
+                }
+            });
+        });
+    });
+</script>
