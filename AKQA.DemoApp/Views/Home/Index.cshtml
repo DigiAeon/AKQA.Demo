@@ -32,19 +32,23 @@
 
             $("#nameText").html($("#name").val());
 
-            $.ajax({
-                url: "@Model.DemoAppServiceBaseUrl/Amount/ConvertToWords/" + $("#amount").val(),
-                type: 'GET',
-                dataType: 'json',
-                success: function (data) {
-                    $("#amountText").html(data.result);
-                },
-                error: function (error) {
-                    var response = $.parseJSON(error.responseText);
-                    
-                    $("#amountText").html(response.error.message);
-                }
-            });
+            if ($("#amount").val().trim() == "") {
+                $("#amountText").html("");
+            } else {
+                $.ajax({
+                    url: "@Model.DemoAppServiceBaseUrl/Amount/ConvertToWords/" + $("#amount").val(),
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        $("#amountText").html(data.result);
+                    },
+                    error: function (error) {
+                        var response = $.parseJSON(error.responseText);
+
+                        $("#amountText").html(response.error.message);
+                    }
+                });
+            }
         });
     });
 </script>
