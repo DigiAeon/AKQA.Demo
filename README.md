@@ -11,5 +11,6 @@ This demo accepts name and dollar amount and upon submitting the information, di
    - Go to Solution properties -> Common properties -> Startup Project and select Multiple startup projects.
       - Set Action to "Start" for "AKQA.DemoApp project"
       - Set Action to "Start without debugging" for "AKQA.DemoApp.Services" project
+   - Go to AKQA.DemoApp.Services properties -> Debug and set App URL to http://localhost:51986/.
    - Run the solution (hit F5). This will open 2 browser windows.
    - Go to the browser window with http://localhost:52224/ base url to test the AKQA demo website.
